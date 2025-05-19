@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import rootReducer from "./reducers";
-import thunk from "redux-thunk"
+import { initializeAuth } from "./actions/authActions";
 
 const CreateAppStore = async () => {
   try {
     const store = configureStore({
       reducer: rootReducer,
-      middleware:[thunk]
     });
+await store.dispatch(initializeAuth());
     return store;
   } catch (error) {
     console.log({ error });
@@ -17,9 +18,3 @@ const CreateAppStore = async () => {
 export default CreateAppStore;
 export type RootState   = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export type AppThunk<Return = void> = ThunkAction<
-  Return,
-  RootState,
-  unknown,
-  AnyAction
->;

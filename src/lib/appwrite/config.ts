@@ -1,8 +1,8 @@
 import { Client, Account, Databases, Storage, Avatars } from "appwrite";
 
 export const appwriteConfig = {
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  URL: process.env.REACT_APP_APPWRITE_URL,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  URL: import.meta.env.VITE_APPWRITE_URL,
 
 };
 

@@ -1,35 +1,22 @@
 import { useForm } from "react-hook-form";
- import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomInput from "../../../components/custom/CustomInput";
- import { signInAction } from "../../../redux/actions/authActions";
+import { signInAction } from "../../../redux/actions/authActions";
 import * as interfaces from "../../../lib/types";
- import { useDispatch } from "react-redux";
-// import type { AppDispatch } from "../../../redux/store";
-
-// import { toast } from "react-toastify";
-// import { useQueryClient } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../../redux/store";
 
 export default function SigninForm() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<interfaces.loginFormData>({});
-  //const dispatch = useDispatch<AppDispatch>();
-  // const queryClient = useQueryClient()
-
-  // const { mutateAsync: signIn, isPending } = useSignInUser();
+  const dispatch = useDispatch<AppDispatch>();
 
   const processForm = async (data: interfaces.loginFormData) => {
-  //  await dispatch(signInAction(data, navigate));
-
-    // if (response?.current) {
-    //   toast.success("ورود موفقیت آمیز بود");
-
-    //   queryClient.invalidateQueries({ queryKey: ['getAccount'] })
-
-    //   navigate("/");
+    await dispatch(signInAction(data, navigate));
   };
 
   return (
@@ -61,7 +48,7 @@ export default function SigninForm() {
         <button
           disabled={false}
           type="submit"
-          className="w-full bg-main text-white text-[22px] font-semibold px-3 py-2 rounded-lg disabled:bg-slate-500"
+          className="w-full bg-red-500 text-white text-[22px] font-semibold px-3 py-2 rounded-lg disabled:bg-slate-500"
         >
           ورود
         </button>

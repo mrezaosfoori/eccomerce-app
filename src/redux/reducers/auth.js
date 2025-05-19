@@ -17,16 +17,19 @@ const initialState = {
 // Use the initialState as a default value
 export default function authReducer(state = initialState, action) {
     const { type, payload } = action;
+    console.log({payload})
 
   switch (type) {
     case types.SIGNIN_SUCCESS:
       return {
         ...state,
-        userData: payload ? payload.user : null,
-        accessToken: payload ? payload.accessToken : null,
-        refreshToken: payload ? payload.refreshToken : null,
+        userData: payload ? payload : null,
         signInError: null,
-        successMessage: payload ? payload : null,
+      };
+       case types.SET_USER_DATA:
+      return {
+        ...state,
+        userData: payload ? payload : null,
       };
     // Do something here based on the different types of actions
     default:
