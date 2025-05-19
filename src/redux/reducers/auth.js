@@ -1,4 +1,4 @@
-import * as types from "../constants/authConstants"
+import * as types from "../constants/authConstants";
 const initialState = {
   userData: null,
   refreshToken: null,
@@ -16,8 +16,8 @@ const initialState = {
 
 // Use the initialState as a default value
 export default function authReducer(state = initialState, action) {
-    const { type, payload } = action;
-    console.log({payload})
+  const { type, payload } = action;
+  console.log({ payload });
 
   switch (type) {
     case types.SIGNIN_SUCCESS:
@@ -26,10 +26,18 @@ export default function authReducer(state = initialState, action) {
         userData: payload ? payload : null,
         signInError: null,
       };
-       case types.SET_USER_DATA:
+    case types.SET_USER_DATA:
       return {
         ...state,
         userData: payload ? payload : null,
+      };
+    case types.LOGOUT:
+      return {
+        ...state,
+        userData: null,
+        signInError: null,
+        signUpError: [],
+        successMessage: null,
       };
     // Do something here based on the different types of actions
     default:
