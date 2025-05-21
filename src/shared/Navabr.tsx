@@ -1,33 +1,19 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import LogoutButton from "./LogoutButton";
+import DarkModeButton from "./DarkModeButton";
 
 const Navbar = () => {
   const userData = useSelector((state) => state.auth.userData);
-  const [theme, setTheme] = useState("light");
-
-
-  useEffect(() => {
-    // Initialize theme based on current data-theme
-    const currentTheme = document.documentElement.dataset.theme || "light";
-    setTheme(currentTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = newTheme;
-     
-    setTheme(newTheme);
-  };
 
   return (
-    <header className="flex justify-between gap-6 w-full mb-6">
-      <button onClick={()=>toggleTheme()} className="text-sm px-4 py-2 rounded bg-gray-200 dark:bg-gray-700">
-        {theme === "light" ? "Dark Mode" : "Light Mode"}
-      </button>
-
-      <div className="text-white">
-        {userData?.email ? `Welcome, ${userData.email}` : "Welcome, Guest"}
+    <header className="flex justify-between gap-6 w-full mb-6 shadow-blue-100 shadow-sm py-5 px-6">
+      <div className="flex items-center gap-2">
+        <LogoutButton />
+        <DarkModeButton />
+        <p>
+          {userData?.email ? `Welcome, ${userData.email}` : "Welcome, Guest"}
+        </p>
       </div>
 
       <div className="flex gap-2 items-center">
