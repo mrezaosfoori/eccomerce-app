@@ -18,7 +18,7 @@ const HomePage = (props: Props) => {
     setLoggingOut(false);
   };
   return (
-    <div className="bg-red-100 p-4 dark:bg-amber-950">
+    <div className="bg-red-100 p-4 dark:bg-slate-700">
       <Navabr />
       {/* <Categorybar /> */}
       <Products />
